@@ -53,7 +53,7 @@ def mostrar(cota_dolar, cota_euro, cota_btc):
     print(f'O Valor de 1 um Euro hoje é de: {cota_euro}'.title())
     print(f'O Valor de 1 um Bitcoin hoje é de: {cota_btc}'.title())
 
-def calculo(carteira, cota_dolar, cota_euro, cota_btc):
+def calculo_moedas(carteira, cota_dolar, cota_euro, cota_btc):
     """
     recebe por parâmetro o valor digitado pelo usuario e calcula de acordo com os valores das cotações.
     :return: retorna os valores calculados como um tupla.
@@ -70,3 +70,17 @@ def mostrar_atual(carteira, carteira_dolar, carteira_euro, carteira_btc):
     """
     print(f'Sua carteita de: {carteira}\nvale: {carteira_dolar:.2f} em dolar, {carteira_euro:.2f} em Euro,'
           f' {carteira_btc:.4f} em Bitcoin. Na cotação de hoje.'.title())
+
+
+def principal():
+    """
+    roda todas as funções do programa.
+    """
+    cotacao = cotar()
+    result = pegar_cota(cotacao)
+    result = mudar(result[0], result[1], result[2])
+    mostrar(result[0], result[1], result[2])
+    carteira = float(input('\nDigite o valor de sua carteira: '))
+    calculo = calculo_moedas(carteira, result[0], result[1], result[2])
+    carteira = moeda(carteira)
+    mostrar_atual(carteira, calculo[0], calculo[1], calculo[2])
