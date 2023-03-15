@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="h-100">
+<html lang="en" class="h-100" xmlns="http://www.w3.org/1999/html">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -82,7 +82,9 @@
 <div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
   <header class="mb-auto">
     <div>
+      <hr>
       <h3 class="float-md-start mb-0">Cotação de Moedas</h3>
+
       <nav class="nav nav-masthead justify-content-center float-md-end">
 
       </nav>
@@ -90,12 +92,56 @@
   </header>
 
   <main class="container px-3">
+    <hr>
     <h1>Moedas</h1>
-    <p class="lead"><h3>Dolar R$ {{dolar}}</h3><h3>Euro R$ {{euro}}</h3><h3>Bitcoin R$ {{bitcoin}}</h3></p>
+    <p class="lead"><h3>1 Dolar R$ {{dolar}}</h3><h3>1 Euro R$ {{euro}}</h3><h3>1 Bitcoin R$ {{bitcoin}}</h3></p>
     <p class="lead">
       <a href="" class="btn btn-lg btn-primary text-dark fw-bold border-white bg-white" type="submit">Atualizar</a>
     </p>
+
+  <hr>
+      <form class="form-inline" action="{{url_for('calculo')}}" method='POST'>
+            <div class="form-group mx-sm-3 mb-2">
+
+            Digite o valor, em real, para conversão:  <input type="text" class="form-control" name="valor" placeholder="Digite o aqui o valor.">
+            <br>
+              <button type="submit"  class="btn btn-success" required>Calcular/Zerar</button>
+
+            </div>
+        </form>
+  <hr>
+{% if lista_valores %}
+    Seguem abaixo os correspondentes valores:
+
+    <table class="table text-white">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Real</th>
+      <th scope="col">Dolar</th>
+      <th scope="col">Euro</th>
+      <th scope="col">Bitcoin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>R$: {{lista_valores[3]}}</td>
+      <td>US$: {{lista_valores[0]}}</td>
+      <td>€: {{lista_valores[1]}}</td>
+      <td>₿: {{lista_valores[2]}}</td>
+    </tr>
+
+
+  </tbody>
+</table>
+
+
+{%endif%}
+
   </main>
+
+
 
   <footer class="mt-auto text-white-50">
     <p>Cotação de Moedas, por <a href="https://www.linkedin.com/in/carlos-eduardo-kadu-0a105040/" class="text-white">Carlos Eduardo - Desenvolvedor de Software. </a>.</p>

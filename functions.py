@@ -85,3 +85,30 @@ def principal():
     #carteira = moeda(carteira)
     #mostrar_atual(carteira, calculo[0], calculo[1], calculo[2])
     return result[0], result[1], result[2]
+
+def converter(valor_conversao):
+    """
+    Realiza a conversão em dolar, euro e bitcoin, com os valores digitados pelo usuário,
+    e retorna uma lista com todos os valores, incluindo o valor digitado.
+    """
+    lista_valores = []
+    cotacao = principal()
+    dolar = cotacao[0]
+    euro = cotacao[1]
+    bitcoin = cotacao[2]
+
+    if valor_conversao:
+        valor_conversao = float(valor_conversao)
+        valor_conversao_dolar = valor_conversao / dolar
+        valor_conversao_euro = valor_conversao / euro
+        valor_conversao_bitcoin = (valor_conversao/1000) / bitcoin
+        valor_conversao_bitcoin = f"{valor_conversao_bitcoin:.5f}"
+
+        valor_conversao_dolar = (f'{valor_conversao_dolar:.2f}')
+        lista_valores.append(valor_conversao_dolar)
+        valor_conversao_euro = (f"{valor_conversao_euro:.2f}")
+        lista_valores.append(valor_conversao_euro)
+        lista_valores.append(valor_conversao_bitcoin)
+        lista_valores.append(valor_conversao)
+
+    return lista_valores
